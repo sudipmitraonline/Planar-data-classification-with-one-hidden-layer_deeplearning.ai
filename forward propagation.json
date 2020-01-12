@@ -1,0 +1,45 @@
+def forward_propagation(X, parameters):
+    """
+    Argument:
+    X -- input data of size (n_x, m)
+    parameters -- python dictionary containing your parameters (output of initialization function)
+    
+    Returns:
+    A2 -- The sigmoid output of the second activation
+    cache -- a dictionary containing "Z1", "A1", "Z2" and "A2"
+    """
+    # Retrieve each parameter from the dictionary "parameters"
+    ### START CODE HERE ### (≈ 4 lines of code)
+    W1 = parameters["W1"]  # (4,2)
+    b1 = parameters["b1"]  # (4,1)
+    W2 = parameters["W2"]  # (1,4)
+    b2 = parameters["b2"]  # (1,1)
+    ### END CODE HERE ###
+    
+    # Implement Forward Propagation to calculate A2 (probabilities)
+    ### START CODE HERE ### (≈ 4 lines of code)
+    Z1 = np.dot(W1,X) + b1
+    A1 = np.tanh(Z1)
+    Z2 = np.dot(W2,A1) + b2
+    A2 = sigmoid(Z2)
+    ### END CODE HERE ###
+    
+    #print("W1_shape = "+ str(W1.shape))
+    #print("b1_shape = "+ str(b1.shape))
+    #print("W2_shape = "+ str(W2.shape))
+    #print("b2_shape = "+ str(b2.shape))
+    #print("X_shape  = "+ str(X.shape))
+    #print("Z1_shape = "+ str(Z1.shape))
+    #print("A1_shape = "+ str(A1.shape))
+    #print("Z2_shape = "+ str(Z2.shape))
+    #print("A2_shape = "+ str(A2.shape))
+    
+    
+    assert(A2.shape == (1, X.shape[1]))
+    
+    cache = {"Z1": Z1,
+             "A1": A1,
+             "Z2": Z2,
+             "A2": A2}
+    
+    return A2, cache
